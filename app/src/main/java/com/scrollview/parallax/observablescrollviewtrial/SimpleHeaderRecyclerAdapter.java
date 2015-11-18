@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Created by akhil on 13/11/15.
+ * This is a recyclerview adapter with a header
  */
 public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_HEADER = 0;

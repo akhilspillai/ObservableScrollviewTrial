@@ -2,9 +2,6 @@ package com.scrollview.parallax.observablescrollviewtrial;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,13 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
     @Bind(R.id.list_background)
     View mListBg;
     @Bind(R.id.recycler)
-    ObservableRecyclerView mScrollView;
+    ObservableRecyclerView mRecyclerView;
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -49,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
     private static final int NUM_OF_ITEMS = 100;
 
     private int mFlexibleSpaceImageHeight, mActionBarSize;
-    private PlaylistAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +60,13 @@ public class MainActivity extends AppCompatActivity implements ObservableScrollV
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();
 
-        List<String> playlists = new ArrayList<>();
-        playlists.add("Now Playing");
-        playlists.add("Playlist 1");
-        playlists.add("Playlist 2");
-        playlists.add("Playlist 3");
-        playlists.add("Playlist 4");
-        playlists.add("Playlist 5");
-        playlists.add("Playlist 6");
-
-
-        mScrollView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         final View headerView = LayoutInflater.from(this).inflate(R.layout.recycler_header, null);
 
-        mScrollView.setScrollViewCallbacks(this);
+        mRecyclerView.setScrollViewCallbacks(this);
 
-        setDummyDataWithHeader(mScrollView, headerView);
+        setDummyDataWithHeader(mRecyclerView, headerView);
 
         headerView.post(new Runnable() {
             @Override
